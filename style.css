@@ -1,0 +1,78 @@
+.imgnicci {
+    width: 140px;
+    height: 210px;
+    border-radius: 70px;
+    object-fit: cover;
+    float: left;
+    margin-right: 30px;
+}
+
+.imgstock {
+    margin-left: 1px;
+    margin-right: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 70px;
+    object-fit: cover;
+    float: left;
+}
+
+em {
+    color: blueviolet;
+    font-style: normal;
+}
+
+h2 {
+    font-size: medium;
+}
+
+button {
+    background-color: rgb(177, 206, 72);
+    border: none;
+    color: white;
+    height: 40px;
+    width: 100px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-right: 14px;
+    margin-top: 0px;
+    font-weight: bold;
+    transition: background-color 1s;
+    transition: box-shadow 200ms;
+    vertical-align: top;
+
+}
+
+button:hover {
+    background-color: rgb(90, 156, 109);
+    box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
+
+}
+
+.first:active {
+    opacity: 0.5;
+}
+
+.second {
+    background-color: rgb(177, 206, 72);
+    border: none;
+    color: white;
+    height: 40px;
+    width: 120px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-right: 14px;
+    margin-top: 0px;
+    font-size: px;
+    font-weight: bold;
+    transition: background-color 1s;
+}
+
+.second:hover {
+    background-color: rgb(90, 156, 109);
+    box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
+}
+
+.second:active {
+    opacity: 0.5;
+}
