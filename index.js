@@ -1,7 +1,6 @@
 
 let count = 0;
 
-
 function increment() {
     let countEl = document.getElementById("followers");
     console.log("Button clicked")
