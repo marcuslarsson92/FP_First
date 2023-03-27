@@ -53,17 +53,18 @@ button:hover {
     opacity: 0.5;
 }
 
-.second {
-    background-color: rgb(177, 206, 72);
+.followers {
+    background-color: rgb(39, 103, 243);
+    display: inline-block;
     border: none;
-    color: white;
+    color: rgb(12, 12, 12);
     height: 40px;
-    width: 120px;
+    width: 100px;
     border-radius: 15px;
-    cursor: pointer;
-    margin-right: 14px;
+    margin-right: 6px;
     margin-top: 0px;
-    font-size: px;
+    font-size: 14px;
+    font-style: normal;
     font-weight: bold;
     transition: background-color 1s;
 }
