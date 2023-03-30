@@ -1,10 +1,14 @@
-.imgnicci {
-    width: 140px;
-    height: 210px;
+
+body {
+    min-width: 880px;
+}
+
+.alex {
+    width: 100px;
+    height: 100px;
     border-radius: 70px;
     object-fit: cover;
     float: left;
-    margin-right: 30px;
 }
 
 .imgstock {
@@ -15,6 +19,28 @@
     border-radius: 70px;
     object-fit: cover;
     float: left;
+}
+header {
+
+    background : linear-gradient(45deg, rgb(101, 101, 241), rgb(185, 235, 212));
+    font-family:Arial, Helvetica, sans-serif;
+    color: white;
+    margin: 1%;
+    padding: 20px 20px 60px 20px;
+    float:none;
+    border-radius: 8px;
+    
+}
+.menu {
+    float: right;
+    padding-left: 20%;
+}
+
+ul {
+    list-style-type: none;
+    display: inline;
+    padding: 0px 5px;
+    margin: 1%
 }
 
 em {
@@ -27,7 +53,7 @@ h2 {
 }
 
 button {
-    background-color: rgb(177, 206, 72);
+    background-color: lightgray;
     border: none;
     color: white;
     height: 40px;
@@ -44,17 +70,55 @@ button {
 }
 
 button:hover {
-    background-color: rgb(90, 156, 109);
+    background-color: rgb(90, 108, 156);
     box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
 
 }
 
+#online {
+    background-color: lightgray;
+    float:none;
+    margin-right: 200px ;
+    margin-left: 1%;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px ;
+    border-radius: 8px;
+    
+}
+
+
 .first:active {
     opacity: 0.5;
 }
+.miniProfile {
+    border-style:none;
+    float: right;
+    margin-right: 1%;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: rgb(234, 232, 232);
+
+}
+#count {
+    margin-top: 5px;
+    margin-left: 3px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#numF {
+    margin-left: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.name {
+    font-family: Arial, Helvetica, sans-serif;
+    float: none;
+}
+
+h3 {
+    font: arial;
+}
 
 .followers {
-    background-color: rgb(39, 103, 243);
+    background-color: rgb(108, 140, 211);
     display: inline-block;
     border: none;
     color: rgb(12, 12, 12);
@@ -70,10 +134,48 @@ button:hover {
 }
 
 .second:hover {
-    background-color: rgb(90, 156, 109);
+    background-color: rgb(90, 107, 156);
     box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
 }
 
 .second:active {
     opacity: 0.5;
 }
+.miniProfile {
+    border-style:none;
+    float: right;
+    margin-right: 1%;
+    padding: 30px;
+    border-radius: 8px;
+    background-color: rgb(234, 232, 232);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  #contact {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
