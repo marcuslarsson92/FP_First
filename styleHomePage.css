@@ -29,6 +29,8 @@ header {
     padding: 20px 20px 60px 20px;
     float:none;
     border-radius: 8px;
+    box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
+
     
 }
 .menu {
@@ -71,18 +73,19 @@ button {
 
 button:hover {
     background-color: rgb(90, 108, 156);
-    box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
+    box-shadow: 10px 10px 10px rgba(136, 135, 135, 0.5);
 
 }
 
 #online {
     background-color: lightgray;
     float:none;
-    margin-right: 200px ;
+    margin-right: 27% ;
     margin-left: 1%;
     font-family: Arial, Helvetica, sans-serif;
     padding: 20px ;
     border-radius: 8px;
+    box-shadow: 10px 10px 10px rgba(206, 205, 205, 0.5);
     
 }
 
@@ -97,6 +100,8 @@ button:hover {
     padding: 30px;
     border-radius: 8px;
     background-color: rgb(234, 232, 232);
+    box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
 
 }
 #count {
@@ -178,4 +183,14 @@ h3 {
   
   button:hover, a:hover {
     opacity: 0.7;
+  }
+
+  .search {
+    background-color: black;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    margin-right: 27%;
+    padding: 15px;
+    border: none;
+    font-size: 17px;
   }
