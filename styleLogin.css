@@ -96,5 +96,8 @@ img{
     left: 110px;
     width: 120px;
     border-radius: 80px;
-    
+    text-shadow: 0px 5px 5px 5px;
+}
+p::shadow{
+    text-shadow: 0px 5px 5px 5px;
 }
