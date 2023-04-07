@@ -29,3 +29,16 @@ function sendPostRequest() {
     .catch(error => console.error(error));
   }
   
+  function sendDeleteRequest() {
+    fetch('http://localhost:8080/api/v1/member/1', { method: 'DELETE',})
+    .then(response => {
+    if (!response.ok) {
+      throw new Error('Something went wrong');
+    }
+    console.log('Member deleted successfully');
+  })
+  .catch(error => {
+    console.error('Error deleting member:', error);
+  });
+
+  }
