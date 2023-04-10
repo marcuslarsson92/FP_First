@@ -12,9 +12,9 @@ function increment() {
 function sendPostRequest() {
     const url = 'http://localhost:8080/api/v1/member';
     const data = {
-      name: 'Simon',
-      email: 'simonflenman1@gmail.com',
-      dob: '2000-03-26'
+      name: 'Filip',
+      email: 'filip@gmail.com',
+      dob: '1997-03-26'
     };
   
     fetch(url, {
