@@ -7,3 +7,4 @@ function increment() {
     count++
     countEl.innerHTML = count;
 }
+
