@@ -24,5 +24,6 @@ button {
     transition: background-color 1s;
     transition: box-shadow 200ms;
     vertical-align: top;
+    float: right;
 
 }
