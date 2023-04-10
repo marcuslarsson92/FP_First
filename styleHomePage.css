@@ -21,7 +21,6 @@ body {
     float: left;
 }
 header {
-
     background : linear-gradient(45deg, rgb(101, 101, 241), rgb(185, 235, 212));
     font-family:Arial, Helvetica, sans-serif;
     color: white;
@@ -30,6 +29,8 @@ header {
     float:none;
     border-radius: 8px;
     box-shadow: 10px 10px 10px rgb(55, 53, 53, 0.5);
+
+
 
     
 }
@@ -155,12 +156,17 @@ h3 {
     background-color: rgb(234, 232, 232);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
-  }
+}
+
+.miniProfile h1 {
+    font-size: 30px;
+}
+
   
-  .title {
+.title {
     color: grey;
     font-size: 18px;
-  }
+}
   
   #contact {
     border: none;
@@ -179,18 +185,42 @@ h3 {
     text-decoration: none;
     font-size: 22px;
     color: black;
-  }
+  } 
   
   button:hover, a:hover {
     opacity: 0.7;
   }
 
   .search {
-    background-color: black;
+    background-color: rgb(154, 169, 213);
     margin-left: 1%;
     margin-bottom: 1%;
     margin-right: 27%;
     padding: 15px;
     border: none;
     font-size: 17px;
+    border-radius: 8px;
+  }
+
+  input[type=text] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 8px;
+  }
+
+  #sButton {
+    background-color: rgb(222, 222, 222);
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 8px;
+    width: 60px
+  }
+
+  #lollo1 {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: pink;
+    padding: 20px;
   }
