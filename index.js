@@ -16,7 +16,7 @@ function sendPostRequest() {
       email: 'filip@gmail.com',
       dob: '1997-03-26'
     };
-  
+
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -28,7 +28,7 @@ function sendPostRequest() {
     .then(data => console.log(data))
     .catch(error => console.error(error));
   }
-  
+
   function sendDeleteRequest() {
     fetch('http://localhost:8080/api/v1/member/1', { method: 'DELETE',})
     .then(response => {
