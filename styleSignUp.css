@@ -20,17 +20,36 @@ body{
     flex-direction: column;
     padding: 0 15px 0 15px;
 }
-img{
-    position: relative;
-    left: 110px;
-    width: 140px;
-    border-radius: 80px;
-    box-shadow: 1px 5px 10px 3px rgba(0, 0, 0, 0.2);
-
+.input{
+    height: 45px;
+    width: 87%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    padding: 0 0 0 42px ;
+    background: rgba(255, 255, 255, 0.3);
+    
 }
+input:hover{
+    box-shadow: 1px 5px 10px 3px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
 .inputField{
     display: flex;
     flex-direction: column;
+    padding-top: 10px;
+}
+i{
+    position: relative;
+    top: -32px;
+    left: 17px;
+    color: #fff;
+    width:10px
+}
+:: ::-webkit-input-placeholder{
+    color:#fff;
 }
 .submit{
     border: none;
@@ -46,19 +65,18 @@ img{
 .submit:hover{
     box-shadow: 1px 5px 10px 3px rgba(0, 0, 0, 0.2);
 }
-:: ::-webkit-input-placeholder{
-    color:#fff;
+img{
+    position: relative;
+    left: 110px;
+    width: 150px;
+    border-radius: 80px;
+    box-shadow: 1px 5px 10px 3px rgba(0, 0, 0, 0.2);
 }
-.signUp{
-    padding-top: 10px;
-}
-.login{
-    padding-top: 10px;
-}
-p{
-    font-weight: bold;
-    font-size: 35px;
-    text-align: center;
+label{
     color: #fff;
-    text-shadow: 10px 10px 20px rgb(69, 63, 63);
+    text-decoration: none;
+    float: right;
+}
+::placeholder{
+    color: #fff;
 }
