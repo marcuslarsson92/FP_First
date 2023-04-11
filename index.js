@@ -12,8 +12,8 @@ function increment() {
 function sendPostRequest() {
     const url = 'http://localhost:8080/api/v1/member';
     const data = {
-      name: 'Filip',
-      email: 'filip@gmail.com',
+      name: 'Pelle',
+      email: 'pelle@gmail.com',
       dob: '1997-03-26'
     };
 
