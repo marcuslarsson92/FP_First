@@ -2,7 +2,7 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background : linear-gradient(45deg, rgb(101, 101, 241), rgb(185, 235, 212));
+    background : linear-gradient(45deg, rgb(179, 179, 242), rgb(185, 235, 212));
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
@@ -102,4 +102,7 @@ img{
     width: 120px;
     border-radius: 80px;
     box-shadow: 1px 5px 10px 3px rgba(0, 0, 0, 0.2);
+}
+::placeholder{
+    color: #fff;
 }
