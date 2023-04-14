@@ -48,7 +48,7 @@ i{
     color: #fff;
     width:10px
 }
-:: ::-webkit-input-placeholder{
+::-webkit-input-placeholder{
     color:#fff;
 }
 .submit{
