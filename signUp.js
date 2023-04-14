@@ -3,6 +3,7 @@ let lastName;
 let email;
 let password;
 
+//Kommentar!!
 document.getElementById("signUpButton").onclick = function(){
     firstName = document.getElementById("fname").value;
     lastName = document.getElementById("lname").value;   
