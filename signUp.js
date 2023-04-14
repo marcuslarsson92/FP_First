@@ -3,7 +3,6 @@ let lastName;
 let email;
 let password;
 
-//document.addEventListener("DOMContentLoaded", function(){
 document.getElementById("signUpButton").onclick = function(){
     firstName = document.getElementById("fname").value;
     lastName = document.getElementById("lname").value;   
@@ -15,4 +14,3 @@ document.getElementById("signUpButton").onclick = function(){
     console.log(email);
     console.log(password);
 }
-//});
