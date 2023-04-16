@@ -85,6 +85,7 @@ h1{
     position: sticky;
     top: 110px;
     align-self: flex-start;
+    margin-top: 30px;
     
 }
 .rightSidebar{
