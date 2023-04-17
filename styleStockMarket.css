@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+.tradingview-widget-container {
+    max-width: 1300px;
+    padding: 10px 80px;
+    margin: auto;
+
+
+}
