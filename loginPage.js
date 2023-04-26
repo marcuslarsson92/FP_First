@@ -21,7 +21,7 @@ function login(){
         };
         
     
-        xhr.open('POST', '/...');
+        xhr.open('POST', 'http://localhost:8080/api/v1/member');
         xhr.setRequestHeader('Contetnt-Type', 'application/json');
         xhr.send(JSON.stringify({email, password}));
 }
