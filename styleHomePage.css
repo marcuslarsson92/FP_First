@@ -77,6 +77,17 @@ button:hover {
     box-shadow: 10px 10px 10px rgba(136, 135, 135, 0.5);
 
 }
+a{
+    text-decoration: none;
+    font-size: 22px;
+    color: black; 
+    transition: coclor 0.3s ease; 
+
+}
+a:hover {
+    color: blueviolet;
+    text-decoration: underline;
+}
 
 #online {
     background-color: lightgray;
