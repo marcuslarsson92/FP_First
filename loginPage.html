@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styleLogin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>LoginPage</title>
+
+        
 </head>
 <body>
     <div class="box">
@@ -46,3 +48,42 @@
 
 </body>
 </html>
+
+<style>
+    
+    .inputField {
+        perspective: 1000px;
+    }
+
+    .input {
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+    }
+
+    .inputField:hover .input {
+        transform: rotateY(180deg);
+    }
+
+    body {
+            overflow: hidden;
+            position: relative;
+        }
+
+        body:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #84FAB0, #8FD3F4);
+            opacity: 0.2;
+            z-index: -1;
+            animation: particles 10s linear infinite;
+        }
+
+        @keyframes particles {
+            0% {
+                background-position: 0%
+            }
+        }
