@@ -48,7 +48,7 @@ i{
     color: #fff;
     width:10px
 }
-:: ::-webkit-input-placeholder{
+ ::-webkit-input-placeholder{
     color:#fff;
 }
 .submit{
@@ -79,4 +79,45 @@ label{
 }
 ::placeholder{
     color: #fff;
+}
+
+.uniqueDesign {
+    --color-complementary: #ff9e4b;
+    --color-accent: #4bcaff;
+}
+
+.uniqueDesign .input {
+    border: 2px dashed var(--color-complementary);
+}
+
+.uniqueDesign .input:focus {
+    border: 2px dashed var(--color-accent);
+}
+
+.uniqueDesign .container:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    background: linear-gradient(45deg, var(--color-accent), var(--color-complementary));
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(10px);
+}
+
+.uniqueDesign .submit {
+    background: var(--color-complementary);
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.uniqueDesign .submit:hover {
+    background: var(--color-accent);
+    color: var(--color-complementary);
 }
