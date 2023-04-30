@@ -27,3 +27,27 @@ button {
     float: right;
 
 }
+
+advancedDesign {
+    --color-tertiary: #ffcc00;
+    --color-quaternary: #ff6600;
+}
+
+.advancedDesign header {
+    background: linear-gradient(45deg, var(--color-tertiary), var(--color-quaternary));
+    transition: background 1.5s;
+}
+
+.advancedDesign header:hover {
+    background: linear-gradient(45deg, var(--color-quaternary), var(--color-tertiary));
+}
+
+.advancedDesign button {
+    background-image: radial-gradient(circle, var(--color-tertiary), var(--color-quaternary));
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.advancedDesign button:hover {
+    background-image: radial-gradient(circle, var(--color-quaternary), var(--color-tertiary));
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
