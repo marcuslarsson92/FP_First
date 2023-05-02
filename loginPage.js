@@ -1,10 +1,8 @@
 
-let email;
-let password;
-
 function login(){
-        email = document.getElementById("email").value;
-        password = document.getElementById("passw").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("passw").value;
+        let url = "http://localhost:8080/api/v1/member/" + email + "/" + password;
         console.log(email);
         console.log(password);
 
@@ -14,14 +12,23 @@ function login(){
         xhr.onreadystatechange = function(){
             if(xhr.readyState === XMLHttpRequest.DONE){
                 if(xhr.status === 200){
-                    window.location.href = "alt/altHomePage";
+                    let result = xhr.responseText; //kommer vara true eller false
+                    console.log(result)
+                    if(result === true) {
+                        window.location.href = "/index.html";
+                    }
+                    else if (result === false) {
+                        alert("Wrong password or email");
+                        window.location.href = "/loginPage.html"
+                    }
+                    
                 }else if(xhr.status === 401){
                     alert("Wrong E-Mail or password");
                 }
             }
         };
         
-        xhr.open('POST', 'http://localhost:8080/api/v1/member');
+        xhr.open('GET', url);
         xhr.setRequestHeader('Contetnt-Type', 'application/json');
         xhr.send(JSON.stringify({email, password}));
     }else{

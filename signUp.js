@@ -48,7 +48,7 @@ function validateEmail(email) {
 function validatePassword(password){
     if((password.length < 6) || (password.length > 16 ) 
     || password.length === 0 ){
-      alert("Password is requaired and have to be have between 6-16 characters")
+      alert("Password is required and has to be between 6-16 characters")
       return false;
     }else {
       return true;
