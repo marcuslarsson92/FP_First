@@ -1,14 +1,4 @@
 
-let count = 0;
-
-function increment() {
-    let countEl = document.getElementById("numF");
-    console.log("Button clicked")
-    count++
-    countEl.innerHTML = count;
-}
-
-
 function sendPostRequest() {
     const url = 'http://localhost:8080/api/v1/member';
     const data = {

@@ -48,8 +48,9 @@
 
                 <div class="inputField">
                     
-                    <input type="password" class="input" id="passw" placeholder="Password" maxlength="12" minlength="6" required>
+                    <input type="password" class="input" id="passw" placeholder="Password" maxlength="16" minlength="6" required>
                     <i class="fa fa-lock" aria-hidden="true"></i>
+                    <span id="password-error" style="color:red;"></span>
                 </div>
 
                 <div class="inputField"> <a href="signUp.html">
@@ -59,7 +60,7 @@
 
 
                 <div class="inputField">
-                    <button type="button" class="submit " id="signUpButton">Sign Up </button>
+                    <button type="button" class="submit " id="signUpButton" onclick="sendPostRequest()">Sign Up </button>
                 </div>
 
         </div>
