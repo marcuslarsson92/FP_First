@@ -1,128 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="styleHomePage.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>www.finansportalen.se</title>
-    <script src="index.js"></script>
+    <title>finansportalen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="indexStyle.css">
 </head>
 
+
+
 <body>
-    <header>
-        <h1>Finans Portalen
-            <ul class="menu">
-                <a href="index.html"> <button>home</button></a></li>
-                <a href="profilePage.html" ><button>profile</button></a></li>
-                <a href="#"><button onclick="sendPostRequest()">POST HTTP Request</button></a></li>
-                <a href="#"> <button onclick="sendDeleteRequest()">DELETE HTTP Request</button></a></li>
-                <a href="loginPage.html"> <button>log out</button></a></li>
-            </ul>
-        </h1>
-    </header><br/><br/>
-
-
-
-    <div class="miniProfile">
-        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="Alex" style="width:100px">
-        <h1>Simon Flenman</h1>
-        <p class="title">student</p>
-        <p>Malmö University</p>
-        <a href="#"><i class="fa fa-dribbble"></i></a>
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <p a href="https://www.facebook.com/alexandra.holter"><button id="contact" >Contact</button></p>
+<nav>
+    <div class="navLeft">
+        <h1>FinansPortalen</h1>
+        <ul>
+            <li><a href="#"><i class="fa fa-home"></i></a></li>
+            <li><a href="#"><i class="fa fa-bar-chart" ></i></a></li>
+            <li><a href="#"><i class="fa fa-inbox" ></i></a></li>
+            <li><a href="/startPage.html"><i class="fa fa-sign-out" ></i></a></li>
+            
+            
+        </ul>
     </div>
 
-    <div class="search">
-        <input type="text" placeholder="Search..">
-        <button type="submit" id="sButton"><i class="fa fa-search"></i></button>
+    <div class="navRight"> 
+        <div class="searchBox">
+            <i class="fa fa-search"></i>
+            <input type="text" placeholder="Search">
+        </div>
+        <div class="navUserIcon">
+           <a href="profile.html"><img src="/images/pic.png" ></a>
+        </div>
+    </div>
+</nav>  
+
+<div class="container">
+    <!--------left-sidebar------------->
+    <div class="leftSidebar">
+        <div class="impLinks">
+            <a href="#"><i class="fa fa-bar-chart" ></i> Live stock market</a>
+            <a href="#"><i class="fa fa-user-plus" ></i> Following</a>
+            <a href="#"><i class="fa fa-users" ></i> Group </a>
+            <a href="#"><i class="fa fa-pencil-square-o" ></i> Post </a>
+            <a href="#"> See more</a>
+        </div>
+        
+    </div>
+    <!--------main-container------------->
+    <div class="mainContent">
+
+        <div class="writePostContainer">
+            <div class="userProfile">
+                <img src="/images/pic.png" >
+                <div>
+                    <a href="profile.html">Alexandra Adlercreutz Holter</a>
+                </div>
+            </div>
+
+            <div class="postInputContainer">
+                <textarea rows="3" placeholder="What's your future stock predictions?"></textarea>
+                <div class="addPostLinks">
+                    <a href="#"><i class="fa fa-link"></i> Link</a>
+                    <a href="#"><i class="fa fa-picture-o"></i> Photo </a>
+                    <button type="button" id="publish">Publish</button>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="postsContainer">
+            <div class="userProfile">
+                <img src="/images/pic.png" >
+                <div>
+                    <a href="#">Simon Flenman</a> <br>
+                    <span>May 2 2023, 13:40</span>
+                </div>
+            </div>
+
+            <div class="postTextContainer">
+                <p class="text">BANKNIFTY (42,133) Banknifty is currently in positive trend. If you are holding long positions then continue to hold 
+                    with daily closing stoploss of 41,339 Fresh short positions can be initiated if Banknifty closes below 41,339 levels. <br>
+
+                    BANKNIFTY Support 41,691 - 41,250 - 40,998 <br>
+                    
+                    BANKNIFTY Resistance 42,385 - 42,637 - 43,079</p>
+                <div class="postInt">
+                    <a href="#"><i class="fa fa-thumbs-o-up"></i></i> Like</a>
+                    <a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comment </a>
+                </div>
+            </div>
+        </div>
+        <div class="postsContainer">
+            <div class="userProfile">
+                <img src="/images/pic.png" >
+                <div>
+                    <a href="#">Auss</a> <br>
+                    <span>May 2 2023, 13:40</span>
+                </div>
+            </div>
+
+            <div class="postTextContainer">
+                <p class="text">BANKNIFTY (42,133) Banknifty is currently in positive trend. If you are holding long positions then continue to hold 
+                    with daily closing stoploss of 41,339 Fresh short positions can be initiated if Banknifty closes below 41,339 levels. <br>
+
+                    BANKNIFTY Support 41,691 - 41,250 - 40,998 <br>
+                    
+                    BANKNIFTY Resistance 42,385 - 42,637 - 43,079</p>
+                <div class="postInt">
+                    <a href="#"><i class="fa fa-thumbs-o-up"></i></i> Like</a>
+                    <a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comment </a>
+                </div>
+            </div>  
+        </div>
+        <div class="postsContainer">
+            <div class="userProfile">
+                <img src="/images/pic.png" >
+                <div>
+                    <a href="#">Marcus Larsson</a> <br>
+                    <span>May 2 2023, 13:40</span>
+                </div>
+            </div>
+
+            <div class="postTextContainer">
+                <p class="text">BANKNIFTY (42,133) Banknifty is currently in positive trend. If you are holding long positions then continue to hold 
+                    with daily closing stoploss of 41,339 Fresh short positions can be initiated if Banknifty closes below 41,339 levels. <br>
+
+                    BANKNIFTY Support 41,691 - 41,250 - 40,998 <br>
+                    
+                    BANKNIFTY Resistance 42,385 - 42,637 - 43,079</p>
+                <div class="postInt">
+                    <a href="#"><i class="fa fa-thumbs-o-up"></i></i> Like</a>
+                    <a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comment </a>
+                </div>
+            </div>
+        </div>
+        
+
+       
+
     </div>
 
-    <div id="online">
-        <p id="text">
-            En portal för aktieintressenter <br>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum."
-        </p>
-        <p id="text">
-            En portal för aktieintressenter
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum."
-        </p>
-        <p id="text">
-            En portal för aktieintressenter
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum."
-        </p>
-        <p id="text">
-            En portal för aktieintressenter
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum."
-        </p>
-        <p id="text">
-            En portal för aktieintressenter
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum."
-        </p>
-        <p id="text">
-            En portal för aktieintressenter
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum."
-        </p>
-        <p id="text">
-            En portal för aktieintressenter
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum."
-        </p>
+    
 
 
+    <!--------right-sidebar------------->
+    <div class="rightSidebar">
 
+        <div class="sidebarTitle">
+            <h4>Following</h4>
+            <a href="#">See all</a>
+        </div>
+
+        <div class="onlineList">
+            <div class="online">
+                <img src="/images/pic.png">
+            </div>
+            <a href="#" class="user">Marcus Larsson</a>
+        </div>
+
+        <div class="onlineList">
+            <div class="online">
+                <img src="/images/pic.png">
+            </div>
+            <a href="#" class="user">Simon Flenman</a>
+        </div>
+
+        <div class="onlineList">
+            <div class="online">
+                <img src="/images/pic.png">
+            </div>
+            <a href="#" class="user">Alexandra A Holter</a>
+        </div>
+
+    
     </div>
 
 
 
-
+</div>
 
 </body>
-
 </html>
