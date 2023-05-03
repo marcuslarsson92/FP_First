@@ -102,6 +102,36 @@ h1{
     flex-basis: 47%;
 
 }
+.miniProfile {
+    flex-basis: 25%;
+    position: sticky;
+    top: 110px;
+    align-self: flex-start;
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 1px 3px 3px 3px rgba(89, 89, 89, 0.2);
+    display: flex;
+    align-items: flex-start;
+}
+
+.miniProfile img{
+    width: 80px;
+    border-radius: 10%;
+    margin-right: 15px;
+    
+}
+.miniProfile h3{
+    font-size: 25px;
+    font-weight: 400;
+}
+.miniProfile p {
+    font-size: 14px;
+}
+
+
+
+
 
 .impLinks a{
     text-decoration: none;
