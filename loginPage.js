@@ -14,10 +14,10 @@ function login(){
                 if(xhr.status === 200){
                     let result = xhr.responseText; //kommer vara true eller false
                     console.log(result)
-                    if(result === true) {
-                        window.location.href = "/index.html";
+                    if(result === "true") {
+                        window.location.href = "/altHomePage.html";
                     }
-                    else if (result === false) {
+                    else if (result === "false") {
                         alert("Wrong password or email");
                         window.location.href = "/loginPage.html"
                     }
@@ -29,7 +29,7 @@ function login(){
         };
         
         xhr.open('GET', url);
-        xhr.setRequestHeader('Contetnt-Type', 'application/json');
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({email, password}));
     }else{
         alert("This E-mail is not valid")
