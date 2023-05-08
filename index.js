@@ -12,7 +12,6 @@ function savePost() {
       } else {
         // handle error response from server
         alert("Post not successfull")
-        
       }
     };
     xhr.send(JSON.stringify({prediction: prediction}));
