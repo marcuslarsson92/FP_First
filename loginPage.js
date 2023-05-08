@@ -15,7 +15,7 @@ function login(){
                     let result = xhr.responseText; //kommer vara true eller false
                     console.log(result)
                     if(result === "true") {
-                        window.location.href = "/altHomePage.html";
+                        window.location.href = "/index.html";
                     }
                     else if (result === "false") {
                         alert("Wrong password or email");
