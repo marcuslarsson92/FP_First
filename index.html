@@ -55,16 +55,16 @@
             <div class="userProfile">
                 <img src="/images/pic.png" >
                 <div>
-                    <a href="profile.html" id="currentMember" >Alexandra Adlercreutz Holter</a>
+                    <p id="email" >alexandraaholter@gmail.com</p>
                 </div>
             </div>
 
             <div class="postInputContainer">
-                <textarea rows="3" placeholder="What's your future stock predictions?"></textarea>
+                <textarea rows="3" id="stock-prediction" placeholder="What's your future stock predictions?"></textarea>
                 <div class="addPostLinks">
                     <a href="#"><i class="fa fa-link"></i> Link</a>
                     <a href="#"><i class="fa fa-picture-o"></i> Photo </a>
-                    <button type="button" id="publish" onclick="makePost()">Publish</button>
+                    <button type="button" id="publish" onclick="savePost()">Publish</button>
                 </div>
 
 
@@ -181,6 +181,7 @@
     </div>
 
 
+    <script src="index.js"></script>
 
 </div>
 
