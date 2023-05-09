@@ -54,8 +54,9 @@ function validateEmail(email) {
             if(xhr.readyState === XMLHttpRequest.DONE){
                 if(xhr.status === 200){
                     let result = JSON.parse(xhr.responseText); //parse the JSON response
-                    console.log(result)
-                    if(result.loggedIn === true) {
+                    console.log(result.loggedIn)
+                    if(result === true) {
+                        console.log("Hej")
                         //API call to retrieve user info
                         const userInfoUrl = "http://localhost:8080/api/v1/member/" + email;
                         const xhr2 = new XMLHttpRequest();
@@ -68,7 +69,7 @@ function validateEmail(email) {
                                     document.getElementById("name").innerHTML = userInfo.name;
                                     //document.getElementById("email").innerHTML = userInfo.email;
                                     //other fields can be updated in a similar way
-                                    window.location.href = "/index.html?id=" + result.loggedIn;
+                                    window.location.href = "/index.html?id=" + result;
                                 }else if(xhr2.status === 401){
                                     alert("Unauthorized access");
                                 }
