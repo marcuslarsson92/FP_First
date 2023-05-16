@@ -40,7 +40,7 @@ function validateEmail(email) {
     return re.test(email);
   }
 
-  function login(){
+  function login(uppdateEmail){
     let email = document.getElementById("email").value;
     let password = document.getElementById("passw").value;
     let url = "http://localhost:8080/api/v1/member/" + email + "/" + password;
@@ -53,23 +53,25 @@ function validateEmail(email) {
         xhr.onreadystatechange = function(){
             if(xhr.readyState === XMLHttpRequest.DONE){
                 if(xhr.status === 200){
-                    let result = JSON.parse(xhr.responseText); //parse the JSON response
-                    console.log(result.loggedIn)
-                    if(result === true) {
+                    let result = xhr.responseText; //parse the JSON response
+                    console.log(result)
+                    if(result === "true") {
                         console.log("Hej")
                         //API call to retrieve user info
-                        const userInfoUrl = "http://localhost:8080/api/v1/member/" + email;
+                        const userInfoUrl = "http://localhost:8080/api/v1/member"// + email + "/" + password;
                         const xhr2 = new XMLHttpRequest();
                         xhr2.onreadystatechange = function(){
                             if(xhr2.readyState === XMLHttpRequest.DONE){
+                                console.log("hejdå")
                                 if(xhr2.status === 200){
-                                    let userInfo = JSON.parse(xhr2.responseText);
+                                    let userInfo = xhr2.responseText;
                                     console.log(userInfo);
+                                    
                                     //Update HTML elements on profile page with user info
-                                    document.getElementById("name").innerHTML = userInfo.name;
-                                    //document.getElementById("email").innerHTML = userInfo.email;
+                                    //document.getElementById("email").innerHTML = userInfo.emal;
+                                    //document.getElementById("email").innerHTML = email;
                                     //other fields can be updated in a similar way
-                                    window.location.href = "/index.html?id=" + result;
+                                    window.location.href = "/index.html?id=" + userInfo;
                                 }else if(xhr2.status === 401){
                                     alert("Unauthorized access");
                                 }
@@ -95,7 +97,21 @@ function validateEmail(email) {
         xhr.send(JSON.stringify({email, password}));
     }else{
         alert("This E-mail is not valid")
-    }    
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Hämta referens till HTML-elementet med id "email"
+    var emailElement = document.getElementById("email");
+  
+    // Hämta användarens e-post från inloggningen och sätt det som värdet på HTML-elementet
+    var användarensEmail = /* Hämta användarens e-post från inloggningen */
+    emailElement.value = användarensEmail;
+  });
+
+
+function uppdateEmail(email){
+    document.getElementById("email").innerHTML = email;
 }
 
   
