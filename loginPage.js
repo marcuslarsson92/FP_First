@@ -40,7 +40,7 @@ function validateEmail(email) {
     return re.test(email);
   }
 
-  function login(uppdateEmail){
+  function login(){
     let email = document.getElementById("email").value;
     let password = document.getElementById("passw").value;
     let url = "http://localhost:8080/api/v1/member/" + email + "/" + password;
