@@ -71,7 +71,7 @@ function validateEmail(email) {
                                     //document.getElementById("email").innerHTML = userInfo.emal;
                                     //document.getElementById("email").innerHTML = email;
                                     //other fields can be updated in a similar way
-                                    window.location.href = "/index.html?id=" + userInfo;
+                                    window.location.href = "/index.html?id=" + email;
                                 }else if(xhr2.status === 401){
                                     alert("Unauthorized access");
                                 }
