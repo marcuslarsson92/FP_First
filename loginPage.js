@@ -35,11 +35,14 @@
         alert("This E-mail is not valid")
     }    
 }*/
+
+//author: Simon Flenman
 function validateEmail(email) {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
-
+  
+  //author: Simon Flenman, Alexandra Adlercreutz Holter
   function login(){
     let email = document.getElementById("email").value;
     let password = document.getElementById("passw").value;
@@ -56,7 +59,6 @@ function validateEmail(email) {
                     let result = xhr.responseText; //parse the JSON response
                     console.log(result)
                     if(result === "true") {
-                        console.log("Hej")
                         //API call to retrieve user info
                         const userInfoUrl = "http://localhost:8080/api/v1/member"// + email + "/" + password;
                         const xhr2 = new XMLHttpRequest();
@@ -100,6 +102,7 @@ function validateEmail(email) {
     }
 }
 
+//autor: Simon Flenman, Alecandra Adlercreutz Holter
 document.addEventListener("DOMContentLoaded", function() {
     // Hämta referens till HTML-elementet med id "email"
     var emailElement = document.getElementById("email");
@@ -109,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
     emailElement.value = användarensEmail;
   });
 
-
+//autor: Simon Flenman, Alecandra Adlercreutz Holter
 function uppdateEmail(email){
     document.getElementById("email").innerHTML = email;
 }
