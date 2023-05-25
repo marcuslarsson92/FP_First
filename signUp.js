@@ -1,8 +1,11 @@
+
+
 let firstName;
 let lastName;
 let email;
 let password;
 
+//author: Simon Flenman
 function sendPostRequest() {
     firstName = document.getElementById("fname").value;
     lastName = document.getElementById("lname").value;   
@@ -40,11 +43,12 @@ function sendPostRequest() {
       alert("This E-mail is not valid!")
     }
 }    
-
+//autor: Simon Flenman
 function validateEmail(email) {
   const re = /\S+@\S+\.\S+/;
   return re.test(email);
 }
+//autor: Simon Flenman 
 function validatePassword(password){
     if((password.length < 6) || (password.length > 16 ) 
     || password.length === 0 ){

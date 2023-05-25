@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Author: Alexandra Adlercreutz Holter -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
             <input type="text" placeholder="Search">
         </div>
         <div class="navUserIcon">
-           <a href="profile.html"><img src="/images/pic.png" ></a>
+            <a id="profileLink" href="profile.html"><img src="/images/pic.png" ></a>
         </div>
     </div>
 </nav>  
@@ -55,16 +56,16 @@
             <div class="userProfile">
                 <img src="/images/pic.png" >
                 <div>
-                    <a href="profile.html" id="currentMember" >Alexandra Adlercreutz Holter</a>
+                    <p id="email" >hej</p>
                 </div>
             </div>
 
             <div class="postInputContainer">
-                <textarea rows="3" placeholder="What's your future stock predictions?"></textarea>
+                <textarea rows="3" id="stock-prediction" placeholder="What's your future stock predictions?"></textarea>
                 <div class="addPostLinks">
                     <a href="#"><i class="fa fa-link"></i> Link</a>
                     <a href="#"><i class="fa fa-picture-o"></i> Photo </a>
-                    <button type="button" id="publish" onclick="makePost()">Publish</button>
+                    <button type="button" id="publish" onclick="savePost()">Publish</button>
                 </div>
 
 
@@ -181,6 +182,8 @@
     </div>
 
 
+    <script src="index.js"></script>
+    <script src="loginPage.js"></script>
 
 </div>
 
