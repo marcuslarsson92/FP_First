@@ -89,7 +89,7 @@ function validateEmail(email) {
                     }
                     
                 }else if(xhr.status === 401){
-                    alert("Wrong E-Mail or password");
+                    alert("Error, server might not be running");
                 }
             }
         };
