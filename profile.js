@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
     loadUserProfilePage(); // info om aktiva användaren
-    window.location.href = "/index.html?id=" + email;
+    //window.location.href = "/index.html?id=" + email;
   });
 
   
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
       .then(response => response.json())
       .then(user => {
   
-          id = user.id;
+        id = user.id;
          firstName = user.firstName;
          lastName = user.lastName;
          email = user.email;
@@ -38,8 +38,22 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(lastName);
         console.log(email);
         //console.log(password);
-  
-        document.getElementById("currentUser").textContent = firstName + " " + lastName;
+        /*
+        var elements = document.getElementsByClassName("currentUser");
+
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].textContent = firstName + " " + lastName;
+        }
+        */
+        var elements = document.querySelectorAll(".currentUser");
+
+        elements.forEach(function(element) {
+          element.textContent = firstName + " " + lastName;
+        });
+
+
+        //document.getElementById("currentUser").textContent = firstName + " " + lastName;
+        //document.getElementsByClassName("currentUser").textContent = firstName + " " + lastName;
       })
       
       .catch(error => {
@@ -47,4 +61,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Visa felmeddelande eller redirecta till en annan sida vid fel
       });
       
+  }
+
+  function sendToMainPage() {
+    var url = new URL(window.location.href);
+    email = url.searchParams.get("id");
+    console.log(email);
+  
+    window.location.href = "/index.html?id=" + email;
+  
   }

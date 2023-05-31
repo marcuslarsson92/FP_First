@@ -3,7 +3,7 @@ var posts = [];
 
 document.addEventListener("DOMContentLoaded", function() {
   loadUserProfile(); // info om aktiva användaren
-  //loadPosts(); //
+  loadPosts(); //
   //handlePosts();
 });
 
@@ -41,7 +41,13 @@ function loadUserProfile() {
       console.log(email);
       //console.log(password);
 
-      document.getElementById("currentUser").textContent = firstName + " " + lastName;
+      //document.getElementById("currentUser").textContent = firstName + " " + lastName;
+      //document.getElementsByClassName("currentUser").textContent = firstName + " " + lastName;
+      var elements = document.querySelectorAll(".currentUser");
+
+        elements.forEach(function(element) {
+          element.textContent = firstName + " " + lastName;
+        });
     })
     
     .catch(error => {
@@ -51,31 +57,52 @@ function loadUserProfile() {
     
 }
 
+function sendToProfile() {
+  var url = new URL(window.location.href);
+  email = url.searchParams.get("id");
+  console.log(email);
+
+  window.location.href = "/profile.html?id=" + email;
+
+}
+
+
 
 
 
 //author: Alexandra A Holter
 function loadPosts() {
-  fetch(`/api/v1/post`, {
+  var urlServer = "http://localhost:8080/api/v1/post";
+  var text;
+  var email;
+
+  fetch(urlServer, {
     method: 'GET'
   })
-    .then(response => {
+  .then(response => response.json())
+  .then(post => {
       // Skapa en tom array för att lagra inlägg
       var posts = [];
       console.log(posts);
 
+      text = post.text;
+      email = post.email;
+      console.log(text);
+      console.log(email);
+
       // Loopa igenom inläggsdata och skapa inläggsobjekt med användar- och inläggsinformation
       for (var i = 0; i < 20; i++) {
         var post = {
-          email: response[i].email, // Användarinformation
-          text: response[i].text // Inläggsinformation
+          email: post.email, // Användarinformation
+          text: post.text // Inläggsinformation
         };
 
         // Lägg till inlägget i arrayen
         posts.push(post);
+        //console.log(posts); // Visa arrayen med inlägg
       }
 
-      console.log(posts); // Visa arrayen med inlägg
+      //console.log(posts); // Visa arrayen med inlägg
 
       // Här kan du utföra ytterligare åtgärder med inläggen, t.ex. uppdatera gränssnittet eller arbeta med datan på annat sätt
     })
@@ -88,7 +115,7 @@ function loadPosts() {
 //author: Alexandra A Holter
 function createPost() {
     let prediction = document.getElementById("stock-prediction").value;
-    let email = document.getElementById("email").innerHTML;
+    let email = document.getElementById("currentUser").innerHTML;
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/api/v1/post/new");
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -97,7 +124,7 @@ function createPost() {
         alert("Successfully posted")
         var post = {
           user: postsData[i].user, // Användarinformation
-          content: postsData[i].content
+          text: postsData[i].text
         }
         // handle success response from server
       } else {
@@ -249,7 +276,7 @@ function visaInlagg() {
 var postsContainer = document.getElementById("posts");
 
 // Skapa en ny divbox för varje inlägg och lägg till den överst
-function createPost() {
+/*function createPost() {
   var newPost = document.createElement("div");
   newPost.classList.add("postsContainer");
 
@@ -301,6 +328,7 @@ function createPost() {
 
 // Anropa funktionen createPost() varje gång en användare publicerar ett inlägg
 //createPost();
+*/
 
 
 
