@@ -1,28 +1,82 @@
 
+var posts = [];
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadUserProfile(); // info om aktiva användaren
+  loadPosts(); //
+  handlePosts();
+});
+
+
+//author: Alexandra A Holter
+//Metod som 
 function loadUserProfile() {
-  // Hämta användar-id från sessionen eller från en cookie
-  //const userId = ...; // t.ex. sessionStorage.getItem("userId");
-  const url = "http://localhost:8080/api/v1/member/";
+
+  var url = new URL(window.location.href);
+  var email = url.searchParams.get("id");
+
+  console.log(email);
+
+  var urlServer = "http://localhost:8080/api/v1/member";
 
   // Gör en GET-förfrågan till REST API:et för att hämta användarinformationen
-  fetch(`/api/users/${userId}`)
+  fetch(`/api/member/${email}`)
     .then(response => response.json())
     .then(user => {
+
+      console.log(firstName);
+      console.log(lastName);
+      console.log(email);
+      
       // Hitta elementen i HTML-mallen och uppdatera dem med användarinformationen
-      document.getElementById("name").textContent = user.name;
+      document.getElementById("firstName").textContent = user.firstName + " " + user.lastName;
+      //document.getElementById("lastName").textContent = user.lastName;
       document.getElementById("email").textContent = user.email;
-      document.getElementById("avatar").src = user.avatarUrl;
+      //document.getElementById("avatar").src = user.avatarUrl;
       // ... och så vidare för andra fält
     })
     .catch(error => {
-      console.error(error);
+      console.log("could not load users info");
       // Visa felmeddelande eller redirecta till en annan sida vid fel
     });
+        
+
 }
 
 
 
-function savePost() {
+
+//author: Alexandra A Holter
+function loadPosts() {
+  fetch(`/api/v1/post`)
+    .then(response => response.json())
+    .then(post => {
+      // Skapa en tom array för att lagra inlägg
+      var posts = [];
+
+      // Loopa igenom inläggsdata och skapa inläggsobjekt med användar- och inläggsinformation
+      for (var i = 0; i < 20; i++) {
+        var post = {
+          user: postsData[i].user, // Användarinformation
+          content: postsData[i].content // Inläggsinformation
+        };
+
+        // Lägg till inlägget i arrayen
+        posts.push(post);
+      }
+
+      console.log(posts); // Visa arrayen med inlägg
+
+      // Här kan du utföra ytterligare åtgärder med inläggen, t.ex. uppdatera gränssnittet eller arbeta med datan på annat sätt
+    })
+    .catch(error => console.error(error));
+}
+
+
+
+
+//author: Alexandra A Holter
+function createPost() {
     let prediction = document.getElementById("stock-prediction").value;
     let email = document.getElementById("email").innerHTML;
     var xhr = new XMLHttpRequest();
@@ -31,6 +85,10 @@ function savePost() {
     xhr.onload = function() {
       if (xhr.status === 200) {
         alert("Successfully posted")
+        var post = {
+          user: postsData[i].user, // Användarinformation
+          content: postsData[i].content
+        }
         // handle success response from server
       } else {
         // handle error response from server
@@ -44,6 +102,72 @@ function savePost() {
     xhr.send(JSON.stringify({"email": email, "text": prediction}));
 
     
+  }
+
+  function handlePosts(posts) {
+    var container = document.getElementById("postsContainer");
+
+    var posts = [];
+    // Loopa igenom inläggen
+    for (var i = 0; i < posts.length; i++) {
+      var post = posts[i];
+      var user = post.user;
+      var content = post.content;
+  
+      // Skapa HTML-element för användarprofil och inläggstext
+      var userProfile = document.createElement("div");
+      userProfile.className = "userProfile";
+      var userImage = document.createElement("img");
+      userImage.src = "/images/pic.png";
+      var userDetails = document.createElement("div");
+      var userName = document.createElement("a");
+      userName.id = "friendUser";
+      userName.textContent = user;
+      var postTime = document.createElement("span");
+      postTime.textContent = getCurrentTime(); // Funktion för att få aktuell tid
+      userDetails.appendChild(userName);
+      userDetails.appendChild(document.createElement("br"));
+      userDetails.appendChild(postTime);
+      userProfile.appendChild(userImage);
+      userProfile.appendChild(userDetails);
+  
+      var postTextContainer = document.createElement("div");
+      postTextContainer.className = "postTextContainer";
+      var postText = document.createElement("p");
+      postText.className = "text";
+      postText.id = "postText";
+      postText.textContent = content;
+  
+      var postInteraction = document.createElement("div");
+      postInteraction.className = "postInt";
+      var likeLink = document.createElement("a");
+      likeLink.href = "#";
+      var likeIcon = document.createElement("i");
+      likeIcon.className = "fa fa-thumbs-o-up";
+      likeLink.appendChild(likeIcon);
+      likeLink.appendChild(document.createTextNode(" Like"));
+      var commentLink = document.createElement("a");
+      commentLink.href = "#";
+      var commentIcon = document.createElement("i");
+      commentIcon.className = "fa fa-commenting-o";
+      commentLink.appendChild(commentIcon);
+      commentLink.appendChild(document.createTextNode(" Comment"));
+  
+      postInteraction.appendChild(likeLink);
+      postInteraction.appendChild(commentLink);
+  
+      postTextContainer.appendChild(postText);
+      postTextContainer.appendChild(postInteraction);
+  
+      // Skapa container för inlägget och lägg till användarprofil och inläggstext
+      var postContainer = document.createElement("div");
+      postContainer.className = "postsContainer";
+      postContainer.appendChild(userProfile);
+      postContainer.appendChild(postTextContainer);
+  
+      // Lägg till inlägget i överordnad container
+      container.appendChild(postContainer);
+    }
   }
   
 
@@ -63,7 +187,7 @@ function goToProfile(event) {
   // window.location.href = "profile.html";
 }*/
 
-
+/*
 window.onload = function() {
   var profileLink = document.getElementById("profileLink");
   profileLink.addEventListener("click", goToProfile);
@@ -76,14 +200,13 @@ window.onload = function() {
     console.log("Hej")
   }
 };
+*/
 
 
 
 
-
-  let inlagg = [];
-
-function hamtaInlaggProfil() {
+/*
+  window.onload = function hamtaInlaggProfil() {
   fetch('/post/'+ email)
     .then(response => response.json())
     .then(inlaggData => {
@@ -93,6 +216,7 @@ function hamtaInlaggProfil() {
     })
     .catch(error => console.error(error));
 }
+*/
 
 function visaInlagg() {
   const inlaggElement = document.getElementById('inlagg');

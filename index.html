@@ -56,7 +56,7 @@
             <div class="userProfile">
                 <img src="/images/pic.png" >
                 <div>
-                    <p id="email" >hej</p>
+                    <p id="currentUser" >hej</p>
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                 <div class="addPostLinks">
                     <a href="#"><i class="fa fa-link"></i> Link</a>
                     <a href="#"><i class="fa fa-picture-o"></i> Photo </a>
-                    <button type="button" id="publish" onclick="savePost()">Publish</button>
+                    <button type="button" id="publish" onclick="createPost()">Publish</button>
                 </div>
 
 
@@ -78,13 +78,13 @@
             <div class="userProfile">
                 <img src="/images/pic.png" >
                 <div>
-                    <a href="#">Simon Flenman</a> <br>
+                    <a id="friendUser">Simon Flenman</a> <br>
                     <span>May 2 2023, 13:40</span>
                 </div>
             </div>
 
             <div class="postTextContainer">
-                <p class="text">BANKNIFTY (42,133) Banknifty is currently in positive trend. If you are holding long positions then continue to hold 
+                <p class="text" id="postText">BANKNIFTY (42,133) Banknifty is currently in positive trend. If you are holding long positions then continue to hold 
                     with daily closing stoploss of 41,339 Fresh short positions can be initiated if Banknifty closes below 41,339 levels. <br>
 
                     BANKNIFTY Support 41,691 - 41,250 - 40,998 <br>
@@ -182,10 +182,11 @@
     </div>
 
 
-    <script src="index.js"></script>
-    <script src="loginPage.js"></script>
+    
 
 </div>
+<script src="index.js"></script>
+    <script src="loginPage.js"></script>
 
 </body>
 </html>

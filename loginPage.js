@@ -103,14 +103,16 @@ function validateEmail(email) {
 }
 
 //autor: Simon Flenman, Alecandra Adlercreutz Holter
+/*
 document.addEventListener("DOMContentLoaded", function() {
     // Hämta referens till HTML-elementet med id "email"
     var emailElement = document.getElementById("email");
   
     // Hämta användarens e-post från inloggningen och sätt det som värdet på HTML-elementet
-    var användarensEmail = /* Hämta användarens e-post från inloggningen */
+    var användarensEmail = // Hämta användarens e-post från inloggningen 
     emailElement.value = användarensEmail;
   });
+  */
 
 //autor: Simon Flenman, Alecandra Adlercreutz Holter
 function uppdateEmail(email){
