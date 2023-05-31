@@ -3,8 +3,8 @@ var posts = [];
 
 document.addEventListener("DOMContentLoaded", function() {
   loadUserProfile(); // info om aktiva användaren
-  loadPosts(); //
-  handlePosts();
+  //loadPosts(); //
+  //handlePosts();
 });
 
 
@@ -14,33 +14,41 @@ function loadUserProfile() {
 
   var url = new URL(window.location.href);
   var email = url.searchParams.get("id");
-
   console.log(email);
+  var firstName;
+  var lastName;
+  var email;
+  var id;
 
   var urlServer = "http://localhost:8080/api/v1/member";
 
   // Gör en GET-förfrågan till REST API:et för att hämta användarinformationen
-  fetch(`/api/member/${email}`)
+    fetch(urlServer +"/"+ email, {
+    method: 'GET'
+  })
     .then(response => response.json())
     .then(user => {
 
+        id = user.id;
+       firstName = user.firstName;
+       lastName = user.lastName;
+       email = user.email;
+       password = user.password;
+
+      //console.log(id);
       console.log(firstName);
       console.log(lastName);
       console.log(email);
-      
-      // Hitta elementen i HTML-mallen och uppdatera dem med användarinformationen
-      document.getElementById("firstName").textContent = user.firstName + " " + user.lastName;
-      //document.getElementById("lastName").textContent = user.lastName;
-      document.getElementById("email").textContent = user.email;
-      //document.getElementById("avatar").src = user.avatarUrl;
-      // ... och så vidare för andra fält
+      //console.log(password);
+
+      document.getElementById("currentUser").textContent = firstName + " " + lastName;
     })
+    
     .catch(error => {
       console.log("could not load users info");
       // Visa felmeddelande eller redirecta till en annan sida vid fel
     });
-        
-
+    
 }
 
 
@@ -48,17 +56,19 @@ function loadUserProfile() {
 
 //author: Alexandra A Holter
 function loadPosts() {
-  fetch(`/api/v1/post`)
-    .then(response => response.json())
-    .then(post => {
+  fetch(`/api/v1/post`, {
+    method: 'GET'
+  })
+    .then(response => {
       // Skapa en tom array för att lagra inlägg
       var posts = [];
+      console.log(posts);
 
       // Loopa igenom inläggsdata och skapa inläggsobjekt med användar- och inläggsinformation
       for (var i = 0; i < 20; i++) {
         var post = {
-          user: postsData[i].user, // Användarinformation
-          content: postsData[i].content // Inläggsinformation
+          email: response[i].email, // Användarinformation
+          text: response[i].text // Inläggsinformation
         };
 
         // Lägg till inlägget i arrayen
