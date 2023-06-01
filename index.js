@@ -56,7 +56,7 @@ function loadUserProfile() {
     });
     
 }
-
+//author: Alexandra A Holter
 function sendToProfile() {
   var url = new URL(window.location.href);
   email = url.searchParams.get("id");
@@ -66,48 +66,68 @@ function sendToProfile() {
 
 }
 
-
-
-
-
-//author: Alexandra A Holter
+ 
+//author: Alexandra A Holter, Simon
 function loadPosts() {
   var urlServer = "http://localhost:8080/api/v1/post";
   var text;
   var email;
+  var date;
 
   fetch(urlServer, {
     method: 'GET'
   })
   .then(response => response.json())
-  .then(post => {
+  .then(posts => {
       // Skapa en tom array för att lagra inlägg
-      var posts = [];
-      console.log(posts);
+      //var posts = [];
+      //console.log(posts);
 
-      text = post.text;
-      email = post.email;
-      console.log(text);
-      console.log(email);
+      var postObjects = [];
 
-      // Loopa igenom inläggsdata och skapa inläggsobjekt med användar- och inläggsinformation
-      for (var i = 0; i < 20; i++) {
-        var post = {
-          email: post.email, // Användarinformation
-          text: post.text // Inläggsinformation
+      // Loopa igenom inläggen och skapa post-objekt med email och text attribut
+      posts.forEach(post => {
+        var postObject = {
+          email: post.email,
+          text: post.text,
+          date: post.date
         };
 
-        // Lägg till inlägget i arrayen
-        posts.push(post);
-        //console.log(posts); // Visa arrayen med inlägg
-      }
+        // Lägg till post-objektet i arrayen
+      postObjects.push(postObject);
 
-      //console.log(posts); // Visa arrayen med inlägg
+    });
+    console.log(postObjects);
 
-      // Här kan du utföra ytterligare åtgärder med inläggen, t.ex. uppdatera gränssnittet eller arbeta med datan på annat sätt
-    })
-    .catch(error => console.error(error));
+
+    var friendUserElements = document.querySelectorAll(".friendUser");
+var textElements = document.querySelectorAll(".text");
+var dateElements = document.querySelectorAll(".date");
+
+postObjects.forEach((postObject, index) => {
+  friendUserElements[index].textContent = postObject.email;
+  textElements[index].textContent = postObject.text;
+  dateElements[index].textContent = postObject.date;
+
+  // Skapa ett nytt Date-objekt från postObject.date
+  var date = new Date(postObject.date);
+
+  var year = date.getFullYear();
+  var month = String(date.getMonth() + 1).padStart(2, '0'); // Lägg till en ledande nolla om månaden är mindre än 10
+  var day = String(date.getDate()).padStart(2, '0'); // Lägg till en ledande nolla om dagen är mindre än 10
+
+  var formattedDate = year + ' ' + month + ' ' + day;
+
+  dateElements[index].textContent = formattedDate;
+
+  //dateElements[index].textContent = postObject.date;
+}); 
+   
+    
+  })
+    .catch(error => console.log(error));
 }
+
 
 
 
@@ -115,7 +135,9 @@ function loadPosts() {
 //author: Alexandra A Holter
 function createPost() {
     let prediction = document.getElementById("stock-prediction").value;
-    let email = document.getElementById("currentUser").innerHTML;
+    let currentUserElement = document.querySelector(".currentUser");
+  let email = currentUserElement.textContent;
+    
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/api/v1/post/new");
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -123,8 +145,8 @@ function createPost() {
       if (xhr.status === 200) {
         alert("Successfully posted")
         var post = {
-          user: postsData[i].user, // Användarinformation
-          text: postsData[i].text
+          user: email, // Användarinformation
+          text: prediction
         }
         // handle success response from server
       } else {
@@ -132,12 +154,13 @@ function createPost() {
         alert("Post not successfull")
         
       }
-      createPost();
+      //createPost();
     };
     console.log(email);
     console.log(prediction);
     xhr.send(JSON.stringify({"email": email, "text": prediction}));
 
+    location.reload();
     
   }
 
