@@ -70,7 +70,7 @@ function sendToProfile() {
 
 
 
-//author: Alexandra A Holter
+//author: Alexandra A Holter and Simon Flenman
 function loadPosts() {
   var urlServer = "http://localhost:8080/api/v1/post";
   var text;
@@ -92,14 +92,14 @@ function loadPosts() {
 
       // Loopa igenom inläggsdata och skapa inläggsobjekt med användar- och inläggsinformation
       for (var i = 0; i < 20; i++) {
-        var post = {
+        var postOut = {
           email: post.email, // Användarinformation
           text: post.text // Inläggsinformation
         };
 
         // Lägg till inlägget i arrayen
-        posts.push(post);
-        //console.log(posts); // Visa arrayen med inlägg
+        posts.push(postOut);
+        console.log(posts); // Visa arrayen med inlägg
       }
 
       //console.log(posts); // Visa arrayen med inlägg
