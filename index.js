@@ -66,8 +66,11 @@ function sendToProfile() {
 
 }
 
- 
-//author: Alexandra A Holter, Simon
+
+
+
+
+//author: Alexandra A Holter and Simon Flenman
 function loadPosts() {
   var urlServer = "http://localhost:8080/api/v1/post";
   var text;
