@@ -4,6 +4,7 @@ var posts = [];
 document.addEventListener("DOMContentLoaded", function() {
   loadUserProfile(); // info om aktiva användaren
   loadPosts(); //
+  
   //handlePosts();
 });
 
@@ -135,7 +136,7 @@ postObjects.forEach((postObject, index) => {
 
 
 
-//author: Alexandra A Holter
+//author: Alexandra A Holter, Simon Flenman
 function createPost() {
     let prediction = document.getElementById("stock-prediction").value;
     let currentUserElement = document.querySelector(".currentUser");

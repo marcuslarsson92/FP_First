@@ -42,6 +42,7 @@ function sendPostRequest() {
     }else{
       alert("This E-mail is not valid!")
     }
+    location.reload();
 }    
 //autor: Simon Flenman
 function validateEmail(email) {
