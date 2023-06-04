@@ -1,49 +1,237 @@
 
+var posts = [];
+
+document.addEventListener("DOMContentLoaded", function() {
+  loadUserProfile(); // info om aktiva användaren
+  loadPosts(); //
+  
+  //handlePosts();
+});
+
+
+//author: Alexandra A Holter
+//Metod som 
 function loadUserProfile() {
-  // Hämta användar-id från sessionen eller från en cookie
-  //const userId = ...; // t.ex. sessionStorage.getItem("userId");
-  const url = "http://localhost:8080/api/v1/member/";
+
+  var url = new URL(window.location.href);
+  var email = url.searchParams.get("id");
+  console.log(email);
+  var firstName;
+  var lastName;
+  var email;
+  var id;
+
+  var urlServer = "http://localhost:8080/api/v1/member";
 
   // Gör en GET-förfrågan till REST API:et för att hämta användarinformationen
-  fetch(`/api/users/${userId}`)
+    fetch(urlServer +"/"+ email, {
+    method: 'GET'
+  })
     .then(response => response.json())
     .then(user => {
-      // Hitta elementen i HTML-mallen och uppdatera dem med användarinformationen
-      document.getElementById("name").textContent = user.name;
-      document.getElementById("email").textContent = user.email;
-      document.getElementById("avatar").src = user.avatarUrl;
-      // ... och så vidare för andra fält
+
+        id = user.id;
+       firstName = user.firstName;
+       lastName = user.lastName;
+       email = user.email;
+       password = user.password;
+
+      //console.log(id);
+      console.log(firstName);
+      console.log(lastName);
+      console.log(email);
+      //console.log(password);
+
+      //document.getElementById("currentUser").textContent = firstName + " " + lastName;
+      //document.getElementsByClassName("currentUser").textContent = firstName + " " + lastName;
+      var elements = document.querySelectorAll(".currentUser");
+
+        elements.forEach(function(element) {
+          element.textContent = firstName + " " + lastName;
+        });
     })
+    
     .catch(error => {
-      console.error(error);
+      console.log("could not load users info");
       // Visa felmeddelande eller redirecta till en annan sida vid fel
     });
+    
+}
+//author: Alexandra A Holter
+function sendToProfile() {
+  var url = new URL(window.location.href);
+  email = url.searchParams.get("id");
+  console.log(email);
+
+  window.location.href = "/profile.html?id=" + email;
+
 }
 
 
 
-function savePost() {
+
+
+//author: Alexandra A Holter and Simon Flenman
+function loadPosts() {
+  var urlServer = "http://localhost:8080/api/v1/post";
+  var text;
+  var email;
+  var date;
+
+  fetch(urlServer, {
+    method: 'GET'
+  })
+  .then(response => response.json())
+  .then(posts => {
+      // Skapa en tom array för att lagra inlägg
+      //var posts = [];
+      //console.log(posts);
+
+      var postObjects = [];
+
+      // Loopa igenom inläggen och skapa post-objekt med email och text attribut
+      posts.forEach(post => {
+        var postObject = {
+          email: post.email,
+          text: post.text,
+          date: post.date
+        };
+
+        // Lägg till post-objektet i arrayen
+      postObjects.push(postObject);
+
+    });
+    console.log(postObjects);
+
+
+    var friendUserElements = document.querySelectorAll(".friendUser");
+var textElements = document.querySelectorAll(".text");
+var dateElements = document.querySelectorAll(".date");
+
+postObjects.forEach((postObject, index) => {
+  friendUserElements[index].textContent = postObject.email;
+  textElements[index].textContent = postObject.text;
+  dateElements[index].textContent = postObject.date;
+
+  // Skapa ett nytt Date-objekt från postObject.date
+  var date = new Date(postObject.date);
+
+  var year = date.getFullYear();
+  var month = String(date.getMonth() + 1).padStart(2, '0'); // Lägg till en ledande nolla om månaden är mindre än 10
+  var day = String(date.getDate()).padStart(2, '0'); // Lägg till en ledande nolla om dagen är mindre än 10
+
+  var formattedDate = year + ' ' + month + ' ' + day;
+
+  dateElements[index].textContent = formattedDate;
+
+  //dateElements[index].textContent = postObject.date;
+}); 
+   
+    
+  })
+    .catch(error => console.log(error));
+}
+
+
+
+
+
+//author: Alexandra A Holter, Simon Flenman
+function createPost() {
     let prediction = document.getElementById("stock-prediction").value;
-    let email = document.getElementById("email").innerHTML;
+    let currentUserElement = document.querySelector(".currentUser");
+  let email = currentUserElement.textContent;
+    
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/api/v1/post/new");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function() {
       if (xhr.status === 200) {
         alert("Successfully posted")
+        var post = {
+          user: email, // Användarinformation
+          text: prediction
+        }
         // handle success response from server
       } else {
         // handle error response from server
         alert("Post not successfull")
         
       }
-      createPost();
+      //createPost();
     };
     console.log(email);
     console.log(prediction);
     xhr.send(JSON.stringify({"email": email, "text": prediction}));
 
+    location.reload();
     
+  }
+
+  function handlePosts(posts) {
+    var container = document.getElementById("postsContainer");
+
+    var posts = [];
+    // Loopa igenom inläggen
+    for (var i = 0; i < posts.length; i++) {
+      var post = posts[i];
+      var user = post.user;
+      var content = post.content;
+  
+      // Skapa HTML-element för användarprofil och inläggstext
+      var userProfile = document.createElement("div");
+      userProfile.className = "userProfile";
+      var userImage = document.createElement("img");
+      userImage.src = "/images/pic.png";
+      var userDetails = document.createElement("div");
+      var userName = document.createElement("a");
+      userName.id = "friendUser";
+      userName.textContent = user;
+      var postTime = document.createElement("span");
+      postTime.textContent = getCurrentTime(); // Funktion för att få aktuell tid
+      userDetails.appendChild(userName);
+      userDetails.appendChild(document.createElement("br"));
+      userDetails.appendChild(postTime);
+      userProfile.appendChild(userImage);
+      userProfile.appendChild(userDetails);
+  
+      var postTextContainer = document.createElement("div");
+      postTextContainer.className = "postTextContainer";
+      var postText = document.createElement("p");
+      postText.className = "text";
+      postText.id = "postText";
+      postText.textContent = content;
+  
+      var postInteraction = document.createElement("div");
+      postInteraction.className = "postInt";
+      var likeLink = document.createElement("a");
+      likeLink.href = "#";
+      var likeIcon = document.createElement("i");
+      likeIcon.className = "fa fa-thumbs-o-up";
+      likeLink.appendChild(likeIcon);
+      likeLink.appendChild(document.createTextNode(" Like"));
+      var commentLink = document.createElement("a");
+      commentLink.href = "#";
+      var commentIcon = document.createElement("i");
+      commentIcon.className = "fa fa-commenting-o";
+      commentLink.appendChild(commentIcon);
+      commentLink.appendChild(document.createTextNode(" Comment"));
+  
+      postInteraction.appendChild(likeLink);
+      postInteraction.appendChild(commentLink);
+  
+      postTextContainer.appendChild(postText);
+      postTextContainer.appendChild(postInteraction);
+  
+      // Skapa container för inlägget och lägg till användarprofil och inläggstext
+      var postContainer = document.createElement("div");
+      postContainer.className = "postsContainer";
+      postContainer.appendChild(userProfile);
+      postContainer.appendChild(postTextContainer);
+  
+      // Lägg till inlägget i överordnad container
+      container.appendChild(postContainer);
+    }
   }
   
 
@@ -63,7 +251,7 @@ function goToProfile(event) {
   // window.location.href = "profile.html";
 }*/
 
-
+/*
 window.onload = function() {
   var profileLink = document.getElementById("profileLink");
   profileLink.addEventListener("click", goToProfile);
@@ -76,14 +264,13 @@ window.onload = function() {
     console.log("Hej")
   }
 };
+*/
 
 
 
 
-
-  let inlagg = [];
-
-function hamtaInlaggProfil() {
+/*
+  window.onload = function hamtaInlaggProfil() {
   fetch('/post/'+ email)
     .then(response => response.json())
     .then(inlaggData => {
@@ -93,6 +280,7 @@ function hamtaInlaggProfil() {
     })
     .catch(error => console.error(error));
 }
+*/
 
 function visaInlagg() {
   const inlaggElement = document.getElementById('inlagg');
@@ -115,7 +303,7 @@ function visaInlagg() {
 var postsContainer = document.getElementById("posts");
 
 // Skapa en ny divbox för varje inlägg och lägg till den överst
-function createPost() {
+/*function createPost() {
   var newPost = document.createElement("div");
   newPost.classList.add("postsContainer");
 
@@ -167,6 +355,7 @@ function createPost() {
 
 // Anropa funktionen createPost() varje gång en användare publicerar ett inlägg
 //createPost();
+*/
 
 
 

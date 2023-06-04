@@ -30,7 +30,7 @@ function sendPostRequest() {
             'Content-Type': 'application/json'
           }
         })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => console.log(data))
         .catch(error => console.error(error));
     
@@ -42,6 +42,7 @@ function sendPostRequest() {
     }else{
       alert("This E-mail is not valid!")
     }
+    location.reload();
 }    
 //autor: Simon Flenman
 function validateEmail(email) {
