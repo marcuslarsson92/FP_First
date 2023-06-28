@@ -350,16 +350,20 @@ button:hover{
 
 .pdImage{
     width: 100px;
-    margin-right: 20px;
     border-radius: 6px;
+    border: none;
+    outline: none;
 }
+
 
 .pdRow div h3{
     font-size: 25px;
     font-weight: 600;
+    margin-left: 20px;
 }
 .pdRow div p{
     font-size: 20px;
+    margin-left: 20px;
 }
 .pdRight button{
     background: #86ceb8;
@@ -477,6 +481,53 @@ button:hover{
     left: 0;
     font-size: 12px;
     color: #626262;
+}
+.settingsMenu{
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    height: 275px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    top: 108%;
+    right: 5%;
+    max-height: 0;
+    transition: max-height 0.3s;
+}
+
+
+.settingText {
+    position: relative;
+    
+}
+
+.settingMenuHeight {
+    max-height: 450px;
+}
+
+.settingsMenuInner {
+    padding: 20px;
+}
+
+
+.settingHeader {
+    padding: 20px, 20px,20px, 0px;
+    font-size: 16px;
+}
+
+.settingsInput {
+    font-size: 14px;
+    float: left;
+}
+
+
+.submitB {
+    float: left;
+    padding: 4px;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 
 
