@@ -39,9 +39,11 @@ function sendPostRequest() {
         console.log(email);
         console.log(password);
       }
+      alert("Your information is saved according to GDPR guidelines and you can delete your account at any time, read more: \n" + "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/grundlaggande-principer/");
     }else{
       alert("This E-mail is not valid!")
     }
+    
     location.reload();
 }    
 //autor: Simon Flenman
