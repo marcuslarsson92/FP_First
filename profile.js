@@ -170,3 +170,134 @@ document.addEventListener("DOMContentLoaded", function() {
     })
       .catch(error => console.log(error));
   }
+
+  const button = document.querySelector('.profilePicB');
+button.addEventListener('click', uploadProfilePicture);
+
+function uploadProfilePicture() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.addEventListener('change', handleFileUpload);
+  input.click();
+}
+
+function handleFileUpload(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener('load', function () {
+    const base64Image = reader.result;
+
+    // Uppdatera källan (src) för profilbilden
+    const profilePic = document.getElementById('profilePic');
+    profilePic.src = base64Image;
+
+    // Skapa en textfil med Base64-kodningen
+    const textFile = new Blob([base64Image], { type: 'text/plain' });
+
+    // Skapa en länk för att ladda ner textfilen
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(textFile);
+    downloadLink.download = 'profile_picture.txt';
+    downloadLink.style.display = 'none';
+
+    // Lägg till länken i dokumentet och klicka på den för att ladda ner filen
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    // Ta bort länken från dokumentet
+    document.body.removeChild(downloadLink);
+  });
+
+  reader.readAsDataURL(file);
+}
+
+var settingsMenu = document.querySelector(".settingsMenu");
+
+function settingsMenuToggle() {
+  settingsMenu.classList.toggle("settingMenuHeight");
+}
+
+//uppdatera lösenord från settings
+
+
+function updatePassword(newPassword) {
+  const url = "http://localhost:8080/api/v1/member";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ password: newPassword })
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log("Lösenordet uppdaterades framgångsrikt.");
+        alert("Your password has been updated")
+      } else {
+        console.log("Ett fel inträffade vid uppdatering av lösenordet.");
+      }
+    })
+    .catch(error => {
+      console.log("Ett fel inträffade vid uppdatering av lösenordet:", error);
+    });
+}
+
+//uppdatera emailadressen från settings
+
+function updateEmail(newEmail) {
+  if (validateEmail(newEmail)){
+  const url = "http://localhost:8080/api/v1/member";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email: newEmail })
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log("E-postadressen uppdaterades framgångsrikt.");
+        alert("Your email has been updated")
+      } else {
+        console.log("Ett fel inträffade vid uppdatering av e-postadressen.");
+      }
+    })
+    .catch(error => {
+      console.log("Ett fel inträffade vid uppdatering av e-postadressen:", error);
+    });
+  }else{
+      alert("This E-mail is not valid")
+    }
+}
+
+function deleteUser(userID) {
+  const url = "http://localhost:8080/api/v1/member";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email})
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log("Ditt konto är borttaget.");
+        alert("Your account has been removed")
+        window.location.href = "/startPage.html"
+      } else {
+        console.log("Ett fel inträffade vid borttagningen av ditt konto.");
+      }
+    })
+    .catch(error => {
+      console.log("Ett fel inträffade vid borttagningen av ditt konto.", error);
+    });
+
+}
+function validateEmail(email) {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
+}

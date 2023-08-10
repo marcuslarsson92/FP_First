@@ -31,10 +31,50 @@
                 <i class="fa fa-search"></i>
                 <input type="text" placeholder="Search">
             </div>
-            <div class="navUserIcon">
-                <img src="/images/pic.png" >
+            <div class="navUserIcon" onclick="settingsMenuToggle()">
+                <img src="/images/pic.png" class="settingText" > 
             </div>
         </div>
+
+        <!------- settings Menu ----------->
+
+        <div class="settingsMenu">
+            <div class="settingsMenuInner">
+                <div class="userProfile">
+                    <img src="/images/pic.png" >
+                    <div class="settingHeader"> 
+                        <p> Settings for current user: <span class="currentUser"> user </span></p>
+                        
+                    </div>
+                </div>
+                <br><br>
+                        <div class="settingsInput">
+                           
+                                <form>
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    <label for="email">Enter new E-mail:</label>
+                                    <input type="email" id="newEmail" name="email" required>
+                                    <br>
+                                    <input type="submit" value="Update e-mail" class="submitB" onclick=updateEmail(newEmail)>
+                                    <br><br><br><br>
+                                </form>
+
+                                <form>
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                    <label for="password">Enter new password:</label>
+                                    <input type="password" id="newPassword" name="password" required>
+                                    <br>
+                                    <input type="submit" value="Update password" class="submitB" onclick=updatePassword(newPassword)>
+                                </form>
+                                <br><br>
+
+                                <div class="delUser">
+                                    <button class="butt"  onclick=deleteUser(userId)>Delete my account</button>
+                                </div>
+                            
+                        </div>
+            </div>
+        </div>  
     </nav>  
 
     <!------- PROFILE PAGE ----------->
@@ -44,7 +84,12 @@
         <div class="profileDetails">
             <div class="pdLeft">
                 <div class="pdRow">
-                    <img src="/images/pic.png" class="pdImage">
+                    
+                    <button type="button" class="profilePicB">
+                        <img id="profilePic" src="/images/pic.png" class="pdImage" />
+                    </button>
+                    <input type="file" id="fileInput" style="display: none;" accept="image/png">
+ 
                     <div>
                         <h3 id="currentUser1">123</h3>
                         <p>215 followers</p>

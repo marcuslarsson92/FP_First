@@ -46,7 +46,7 @@ img{
 .submit:hover{
     box-shadow: 1px 5px 10px 3px rgba(0, 0, 0, 0.2);
 }
-:: ::-webkit-input-placeholder{
+ ::-webkit-input-placeholder{
     color:#fff;
 }
 .signUp{
