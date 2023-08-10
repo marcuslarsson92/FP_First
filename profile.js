@@ -247,10 +247,13 @@ function updatePassword(newPassword) {
 //uppdatera emailadressen från settings
 
 function updateEmail(newEmail) {
+
+  var currentEmail = url.searchParams.get("id"); //här får vi hämta nuvarande email från hemsidan
+                                                // och lagra i variabeln currentEmail som vi sedan har med i URL
   if (validateEmail(newEmail)){
   const url = "http://localhost:8080/api/v1/member";
 
-  fetch(url, {
+  fetch(url + "/" + currentEmail, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
