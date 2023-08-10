@@ -486,7 +486,7 @@ button:hover{
     position: absolute;
     width: 90%;
     max-width: 350px;
-    height: 275px;
+    height: 320px;    
     background: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     border-radius: 4px;
@@ -504,7 +504,7 @@ button:hover{
 }
 
 .settingMenuHeight {
-    max-height: 450px;
+    max-height: 600px;
 }
 
 .settingsMenuInner {
@@ -528,6 +528,20 @@ button:hover{
     padding: 4px;
     margin-right: 20px;
     margin-top: 10px;
+}
+
+.delUser {
+    float: left;
+    margin-right: 55px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    size: 80px;
+    
+}
+
+.butt {
+    margin-top: 15px;
+    padding: 4px;
 }
 
 

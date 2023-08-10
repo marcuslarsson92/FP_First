@@ -50,7 +50,6 @@
                 <br><br>
                         <div class="settingsInput">
                            
-                           
                                 <form>
                                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
                                     <label for="email">Enter new E-mail:</label>
@@ -66,7 +65,12 @@
                                     <input type="password" id="newPassword" name="password" required>
                                     <br>
                                     <input type="submit" value="Update password" class="submitB" onclick=updatePassword(newPassword)>
-                                  </form>
+                                </form>
+                                <br><br>
+
+                                <div class="delUser">
+                                    <button class="butt"  onclick=deleteUser(userId)>Delete my account</button>
+                                </div>
                             
                         </div>
             </div>

@@ -222,7 +222,7 @@ function settingsMenuToggle() {
 
 
 function updatePassword(newPassword) {
-  const url = "http://localhost:8080/api/updatepassword";
+  const url = "http://localhost:8080/api/v1/member";
 
   fetch(url, {
     method: "POST",
@@ -234,6 +234,7 @@ function updatePassword(newPassword) {
     .then(response => {
       if (response.ok) {
         console.log("Lösenordet uppdaterades framgångsrikt.");
+        alert("Your password has been updated")
       } else {
         console.log("Ett fel inträffade vid uppdatering av lösenordet.");
       }
@@ -246,7 +247,8 @@ function updatePassword(newPassword) {
 //uppdatera emailadressen från settings
 
 function updateEmail(newEmail) {
-  const url = "http://localhost:8080/api/updateemail";
+  if (validateEmail(newEmail)){
+  const url = "http://localhost:8080/api/v1/member";
 
   fetch(url, {
     method: "POST",
@@ -258,6 +260,7 @@ function updateEmail(newEmail) {
     .then(response => {
       if (response.ok) {
         console.log("E-postadressen uppdaterades framgångsrikt.");
+        alert("Your email has been updated")
       } else {
         console.log("Ett fel inträffade vid uppdatering av e-postadressen.");
       }
@@ -265,4 +268,36 @@ function updateEmail(newEmail) {
     .catch(error => {
       console.log("Ett fel inträffade vid uppdatering av e-postadressen:", error);
     });
+  }else{
+      alert("This E-mail is not valid")
+    }
+}
+
+function deleteUser(userID) {
+  const url = "http://localhost:8080/api/v1/member";
+
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email})
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log("Ditt konto är borttaget.");
+        alert("Your account has been removed")
+        window.location.href = "/startPage.html"
+      } else {
+        console.log("Ett fel inträffade vid borttagningen av ditt konto.");
+      }
+    })
+    .catch(error => {
+      console.log("Ett fel inträffade vid borttagningen av ditt konto.", error);
+    });
+
+}
+function validateEmail(email) {
+  const re = /\S+@\S+\.\S+/;
+  return re.test(email);
 }
