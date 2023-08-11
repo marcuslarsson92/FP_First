@@ -222,15 +222,18 @@ function settingsMenuToggle() {
 
 
 function updatePassword(newPassword) {
-  const url = "http://localhost:8080/api/v1/member";
+  const url = "http://localhost:8080/api/v1/member/updatepw/";
+  var currentEmail = url.searchParams.get("id"); //Hämta email som vi kan skicka in i JSON-objektet
 
   fetch(url, {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ password: newPassword })
-  })
+    body: JSON.stringify({ 
+      password: newPassword,
+      email: currentEmail })
+    })
     .then(response => {
       if (response.ok) {
         console.log("Lösenordet uppdaterades framgångsrikt.");
@@ -248,7 +251,7 @@ function updatePassword(newPassword) {
 
 function updateEmail(newEmail) {
 
-  var currentEmail = url.searchParams.get("id"); //här får vi hämta nuvarande email från hemsidan
+  var currentEmail = url.searchParams.get("id"); //Hämta nuvarande email från hemsidan
                                                 // och lagra i variabeln currentEmail som vi sedan har med i URL
   if (validateEmail(newEmail)){
   const url = "http://localhost:8080/api/v1/member";
@@ -276,15 +279,16 @@ function updateEmail(newEmail) {
     }
 }
 
-function deleteUser(userID) {
-  const url = "http://localhost:8080/api/v1/member";
+function deleteUser(email) {
+  const url = "http://localhost:8080/api/v1/member/delete";
+  var currentEmail = url.searchParams.get("id"); //Hämta email som vi kan skicka in i URL
 
-  fetch(url, {
-    method: "POST",
+  fetch(url + "/" + currentEmail, {
+    method: "DELETE",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ email})
+    //body: JSON.stringify({ email})
   })
     .then(response => {
       if (response.ok) {
