@@ -254,7 +254,7 @@ function updateEmail(newEmail) {
   const url = "http://localhost:8080/api/v1/member";
 
   fetch(url + "/" + currentEmail, {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
