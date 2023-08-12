@@ -222,10 +222,10 @@ function settingsMenuToggle() {
 
 
 function updatePassword(newPassword) {
-  var url = "http://localhost:8080/api/v1/member/updatepw";
+  var url2 = "http://localhost:8080/api/v1/member/updatepw";
   var currentEmail = url.searchParams.get("id"); //Hämta email som vi kan skicka in i JSON-objektet
 
-  fetch(url, {
+  fetch(url2, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -249,12 +249,48 @@ function updatePassword(newPassword) {
     //window.location.href = "/index.html?id=" + currentEmail;
 }
 
+
+/*
+function updatePassword(newPassword) {
+  var currentEmail = url.searchParams.get("id");
+  var url2 = "http://localhost:8080/api/v1/member/updatepw";
+
+  const requestData = {
+    email: currentEmail,
+    password: newPassword
+  };
+
+  fetch(url2, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(requestData)
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log("Password updated successfully.");
+        alert("Your password has been updated.");
+        // Here you can update specific parts of your page without reloading.
+        // For example, update a message or show/hide elements.
+      } else {
+        console.log("An error occurred while updating the password.");
+        alert("An error occurred while updating the password.");
+      }
+    })
+    .catch(error => {
+      console.log("An error occurred while updating the password:", error);
+      alert("An error occurred while updating the password.");
+    });
+}
+*/
+
 //uppdatera emailadressen från settings
 
 function updateEmail(newEmail) {
 
   var currentEmail = url.searchParams.get("id"); //Hämta nuvarande email från hemsidan
-                                                // och lagra i variabeln currentEmail som vi sedan har med i URL
+                                                 // och lagra i variabeln currentEmail som vi sedan har med i URL
   if (validateEmail(newEmail)){
   const url = "http://localhost:8080/api/v1/member";
 
@@ -263,7 +299,9 @@ function updateEmail(newEmail) {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ email: newEmail })
+    body: JSON.stringify({ 
+      email: currentEmail,
+      newEmail: newEmail })
   })
     .then(response => {
       if (response.ok) {
@@ -290,7 +328,7 @@ function deleteUser(email) {
     headers: {
       "Content-Type": "application/json"
     },
-    //body: JSON.stringify({ email})
+    body: JSON.stringify({ email})
   })
     .then(response => {
       if (response.ok) {
