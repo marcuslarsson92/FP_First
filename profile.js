@@ -222,38 +222,44 @@ function settingsMenuToggle() {
 
 
 function updatePassword(newPassword) {
-  const url = "http://localhost:8080/api/v1/member";
+  var url = "http://localhost:8080/api/v1/member/updatepw";
+  var currentEmail = url.searchParams.get("id"); //Hämta email som vi kan skicka in i JSON-objektet
 
   fetch(url, {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ password: newPassword })
-  })
+    body: JSON.stringify({ 
+      email: currentEmail, 
+      password: newPassword
+      })
+    })
     .then(response => {
       if (response.ok) {
         console.log("Lösenordet uppdaterades framgångsrikt.");
         alert("Your password has been updated")
       } else {
         console.log("Ett fel inträffade vid uppdatering av lösenordet.");
-        alert("Something went wrong when changing your password, please try again")
       }
     })
     .catch(error => {
       console.log("Ett fel inträffade vid uppdatering av lösenordet:", error);
-      alert("Something went wrong when changing your password, please try again")
     });
+    //window.location.href = "/index.html?id=" + currentEmail;
 }
 
 //uppdatera emailadressen från settings
 
 function updateEmail(newEmail) {
+
+  var currentEmail = url.searchParams.get("id"); //Hämta nuvarande email från hemsidan
+                                                // och lagra i variabeln currentEmail som vi sedan har med i URL
   if (validateEmail(newEmail)){
   const url = "http://localhost:8080/api/v1/member";
 
-  fetch(url, {
-    method: "POST",
+  fetch(url + "/" + currentEmail, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
@@ -265,27 +271,26 @@ function updateEmail(newEmail) {
         alert("Your email has been updated")
       } else {
         console.log("Ett fel inträffade vid uppdatering av e-postadressen.");
-        alert("Something went wrong when changing your e-mail, please try again")
       }
     })
     .catch(error => {
       console.log("Ett fel inträffade vid uppdatering av e-postadressen:", error);
-      alert("Something went wrong when changing your e-mail, please try again")
     });
   }else{
       alert("This E-mail is not valid")
     }
 }
 
-function deleteUser(userID) {
-  const url = "http://localhost:8080/api/v1/member";
+function deleteUser(email) {
+  const url = "http://localhost:8080/api/v1/member/delete";
+  var currentEmail = url.searchParams.get("id"); //Hämta email som vi kan skicka in i URL
 
-  fetch(url, {
+  fetch(url + "/" + currentEmail, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ userID})
+    //body: JSON.stringify({ email})
   })
     .then(response => {
       if (response.ok) {
@@ -294,12 +299,10 @@ function deleteUser(userID) {
         window.location.href = "/startPage.html"
       } else {
         console.log("Ett fel inträffade vid borttagningen av ditt konto.");
-        alert("Something went wrong when deleting your account, please try again")
       }
     })
     .catch(error => {
       console.log("Ett fel inträffade vid borttagningen av ditt konto.", error);
-      alert("Something went wrong when deleting your account, please try again")
     });
 
 }

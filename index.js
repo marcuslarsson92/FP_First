@@ -25,7 +25,8 @@ function loadUserProfile() {
 
   // Gör en GET-förfrågan till REST API:et för att hämta användarinformationen
     fetch(urlServer +"/"+ email, {
-    method: 'GET'
+    method: 'GET',
+    mode: "no-cors",
   })
     .then(response => response.json())
     .then(user => {
