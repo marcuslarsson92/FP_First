@@ -237,10 +237,12 @@ function updatePassword(newPassword) {
         alert("Your password has been updated")
       } else {
         console.log("Ett fel inträffade vid uppdatering av lösenordet.");
+        alert("Something went wrong when changing your password, please try again")
       }
     })
     .catch(error => {
       console.log("Ett fel inträffade vid uppdatering av lösenordet:", error);
+      alert("Something went wrong when changing your password, please try again")
     });
 }
 
@@ -263,10 +265,12 @@ function updateEmail(newEmail) {
         alert("Your email has been updated")
       } else {
         console.log("Ett fel inträffade vid uppdatering av e-postadressen.");
+        alert("Something went wrong when changing your e-mail, please try again")
       }
     })
     .catch(error => {
       console.log("Ett fel inträffade vid uppdatering av e-postadressen:", error);
+      alert("Something went wrong when changing your e-mail, please try again")
     });
   }else{
       alert("This E-mail is not valid")
@@ -290,10 +294,12 @@ function deleteUser(userID) {
         window.location.href = "/startPage.html"
       } else {
         console.log("Ett fel inträffade vid borttagningen av ditt konto.");
+        alert("Something went wrong when deleting your account, please try again")
       }
     })
     .catch(error => {
       console.log("Ett fel inträffade vid borttagningen av ditt konto.", error);
+      alert("Something went wrong when deleting your account, please try again")
     });
 
 }
