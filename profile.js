@@ -222,7 +222,7 @@ function settingsMenuToggle() {
 
 
 function updatePassword(newPassword) {
-  const url = "http://localhost:8080/api/v1/member/updatepw/";
+  var url = "http://localhost:8080/api/v1/member/updatepw";
   var currentEmail = url.searchParams.get("id"); //Hämta email som vi kan skicka in i JSON-objektet
 
   fetch(url, {
@@ -231,8 +231,9 @@ function updatePassword(newPassword) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ 
-      password: newPassword,
-      email: currentEmail })
+      email: currentEmail, 
+      password: newPassword
+      })
     })
     .then(response => {
       if (response.ok) {
@@ -245,6 +246,7 @@ function updatePassword(newPassword) {
     .catch(error => {
       console.log("Ett fel inträffade vid uppdatering av lösenordet:", error);
     });
+    //window.location.href = "/index.html?id=" + currentEmail;
 }
 
 //uppdatera emailadressen från settings
