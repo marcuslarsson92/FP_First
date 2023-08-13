@@ -222,10 +222,11 @@ function settingsMenuToggle() {
 
 
 function updatePassword(newPassword) {
-  var url2 = "http://localhost:8080/api/v1/member/updatepw";
+  var url2 = "http://localhost:8080/api/v1/";
   var currentEmail = url.searchParams.get("id"); //Hämta email som vi kan skicka in i JSON-objektet
 
-  fetch(url2, {
+
+  fetch(url2 + "/" + currentEmail + "/" + newPassword, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -239,6 +240,7 @@ function updatePassword(newPassword) {
       if (response.ok) {
         console.log("Lösenordet uppdaterades framgångsrikt.");
         alert("Your password has been updated")
+        window.location.href = "/profile.html?id=" + currentEmail;
       } else {
         console.log("Ett fel inträffade vid uppdatering av lösenordet.");
       }
@@ -246,7 +248,7 @@ function updatePassword(newPassword) {
     .catch(error => {
       console.log("Ett fel inträffade vid uppdatering av lösenordet:", error);
     });
-    //window.location.href = "/index.html?id=" + currentEmail;
+    
 }
 
 
@@ -284,6 +286,36 @@ function updatePassword(newPassword) {
     });
 }
 */
+/*
+function updateEmail(newEmail) {
+  //const newEmail = "newemail@example.com"; // Den nya e-postadressen
+
+  const data = {
+      email: newEmail
+  };
+
+  fetch('/email', {
+      method: 'PUT',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  })
+  .then(response => {
+      if (response.ok) {
+          return response.text();
+      } else {
+          throw new Error('Email update failed.');
+      }
+  })
+  .then(responseText => {
+      console.log(responseText); // Utskrift av det lyckade svaret från backend
+  })
+  .catch(error => {
+      console.error('Error:', error);
+  });
+}
+*/
 
 //uppdatera emailadressen från settings
 
@@ -292,7 +324,7 @@ function updateEmail(newEmail) {
   var currentEmail = url.searchParams.get("id"); //Hämta nuvarande email från hemsidan
                                                  // och lagra i variabeln currentEmail som vi sedan har med i URL
   if (validateEmail(newEmail)){
-  const url = "http://localhost:8080/api/v1/member";
+  const url = "http://localhost:8080/api/v1";
 
   fetch(url + "/" + currentEmail, {
     method: "PUT",
@@ -318,6 +350,7 @@ function updateEmail(newEmail) {
       alert("This E-mail is not valid")
     }
 }
+
 
 function deleteUser(email) {
   const url = "http://localhost:8080/api/v1/member/delete";
