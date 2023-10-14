@@ -30,21 +30,28 @@ function sendPostRequest() {
             'Content-Type': 'application/json'
           }
         })
-        .then(response => response.text())
+        .then(response => {
+          if (!response.ok) {
+            alert("E-Mailadressen existerar redan i database, vänligen logga in med det eller skapa ett konto med ett annat mailadress");
+            location.reload();
+          } else {// if(response.status == 400){
+            alert("Your information is saved according to GDPR guidelines and you can delete your account at any time, read more: \n" + "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/grundlaggande-principer/");
+            location.reload();
+            return response.text();
+          }
+        })
         .then(data => console.log(data))
-        .catch(error => console.error(error));
-    
+
         console.log(firstName);
         console.log(lastName);
         console.log(email);
         console.log(password);
       }
-      alert("Your information is saved according to GDPR guidelines and you can delete your account at any time, read more: \n" + "https://www.imy.se/verksamhet/dataskydd/det-har-galler-enligt-gdpr/grundlaggande-principer/");
-    }else{
+    } else{
       alert("This E-mail is not valid!")
     }
     
-    location.reload();
+    
 }    
 //autor: Simon Flenman
 function validateEmail(email) {
