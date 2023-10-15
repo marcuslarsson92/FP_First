@@ -222,6 +222,16 @@ button:hover{
     box-shadow: 1px 5px 10px 3px rgba(0, 0, 0, 0.2);
 }
 
+#publish.disabled {
+    background-color: crimson;
+    cursor: not-allowed;
+}
+
+#publish.disabled:hover {
+    background-color: crimson;
+    cursor: not-allowed;
+}
+
 .userProfile{
     display: flex;
     align-items: center;

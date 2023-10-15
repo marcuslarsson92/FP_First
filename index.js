@@ -1,6 +1,6 @@
 
-var posts = [];
-
+//var posts = [];
+var currentSignedInUserFullName;
 document.addEventListener("DOMContentLoaded", function() {
   loadUserProfile(); // info om aktiva användaren
   loadPosts(); //
@@ -8,14 +8,13 @@ document.addEventListener("DOMContentLoaded", function() {
   //handlePosts();
 });
 
-
+//console.log("currentSignedInUserFullName: " + currentSignedInUserFullName);
 //author: Alexandra A Holter
 //Metod som 
 function loadUserProfile() {
 
   var url = new URL(window.location.href);
   var email = url.searchParams.get("id");
-  console.log(email);
   var firstName;
   var lastName;
   var email;
@@ -35,12 +34,8 @@ function loadUserProfile() {
        lastName = user.lastName;
        email = user.email;
        password = user.password;
+       currentSignedInUserFullName = user.firstName + " " + user.lastName;
 
-      //console.log(id);
-      console.log(firstName);
-      console.log(lastName);
-      console.log(email);
-      //console.log(password);
 
       //document.getElementById("currentUser").textContent = firstName + " " + lastName;
       //document.getElementsByClassName("currentUser").textContent = firstName + " " + lastName;
@@ -74,6 +69,7 @@ function sendToProfile() {
 //author: Alexandra A Holter and Simon Flenman
 function loadPosts() {
   var urlServer = "http://localhost:8080/api/v1/post";
+  var id;
   var text;
   var email;
   var date;
@@ -92,6 +88,7 @@ function loadPosts() {
       // Loopa igenom inläggen och skapa post-objekt med email och text attribut
       posts.forEach(post => {
         var postObject = {
+          id: post.id,
           email: post.email,
           text: post.text,
           date: post.date
@@ -107,11 +104,15 @@ function loadPosts() {
 var friendUserElements = document.querySelectorAll(".friendUser");
 var textElements = document.querySelectorAll(".text");
 var dateElements = document.querySelectorAll(".date");
+var postIdElements = document.querySelectorAll(".postID");
+var postsContainer = document.querySelector(".posts");
 
 postObjects.forEach((postObject, index) => {
-  friendUserElements[index].textContent = postObject.email;
+  
+  /*friendUserElements[index].textContent = postObject.email;
   textElements[index].textContent = postObject.text;
   dateElements[index].textContent = postObject.date;
+  postIdElements[index].textContent = postObject.id;*/
 
   // Skapa ett nytt Date-objekt från postObject.date
   var date = new Date(postObject.date);
@@ -122,7 +123,8 @@ postObjects.forEach((postObject, index) => {
 
   var formattedDate = year + ' ' + month + ' ' + day;
 
-  dateElements[index].textContent = formattedDate;
+  //dateElements[index].textContent = formattedDate;
+  postsContainer.innerHTML += setPost(postObject.email, postObject.id, formattedDate, postObject.text);
 
   //dateElements[index].textContent = postObject.date;
 }); 
@@ -139,7 +141,7 @@ function countCharacters() {
   const charCount = document.getElementById('charCount');
 
   const currentLength = textarea.value.length;
-  charCount.textContent = `${currentLength}/1000`;
+  charCount.textContent = currentLength + '/1000';
 
   if (currentLength > 1000) {
       publishButton.disabled = true;
@@ -150,7 +152,48 @@ function countCharacters() {
   }
 }
 
+function deletePost(postId) {
+  var loggedInUserEmail = document.querySelector('.currentUser');
+  console.log(JSON.stringify(loggedInUserEmail.textContent));
+  console.log("loggedInUserEmail: "+loggedInUserEmail.textContent);
+  if (confirm('Are you sure you want to delete this post?')) {
+      fetch('http://localhost:8080/api/v1/post/' + postId, {
+          method: 'DELETE',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: loggedInUserEmail.textContent,
+      })
+      .then(data => {
+          if (data.ok) {
+              alert('Post was deleted successfully');
+              location.reload();
+          } else {
+              alert('Failed to delete post');
+          }
+      })
+      .catch((error) => {
+        alert('error, could not delete the post. Please try again later.');
+        console.error('Error:', error);
+      });
+  }
+}
 
+function setPost(postAuthor, postId, postDate, postText) {
+  var deletePostButton = '';
+  let currentUser = document.querySelector('.currentUser').textContent;
+  console.log("is '" + currentUser + "' = '" + postAuthor + "'");
+  if (currentUser == postAuthor) {
+    deletePostButton = '<button class="deletePostBtn" onclick="deletePost(' + postId + ')" data-postid="' + postId + '">Delete Post</button>';
+  }
+  var output = '<div class="postsContainer"><div class="userProfile"><img src="/images/pic.png" ><div><a class="friendUser">'
+  +postAuthor+'</a> <br><a class="postID" style="display:none;">'
+  +postId+'</a><span class="date">'
+  +postDate+'</span></div></div><div class="postTextContainer"><p class="text">'
+  +postText+'</p><div class="postInt"><a href="#"><i class="fa fa-thumbs-o-up"></i></i> Like</a><a href="#"><i class="fa fa-commenting-o" aria-hidden="true"></i> Comment </a>'
+  +deletePostButton+'</div></div></div>';
+  return output;
+}
 
 
 
@@ -173,9 +216,7 @@ function createPost() {
           text: prediction
         }
         location.reload();
-        // handle success response from server
       } else {
-        // handle error response from server
         alert("Post not successfull")
         
       }
