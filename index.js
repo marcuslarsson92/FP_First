@@ -104,7 +104,7 @@ function loadPosts() {
     console.log(postObjects);
 
 
-    var friendUserElements = document.querySelectorAll(".friendUser");
+var friendUserElements = document.querySelectorAll(".friendUser");
 var textElements = document.querySelectorAll(".text");
 var dateElements = document.querySelectorAll(".date");
 
@@ -132,6 +132,25 @@ postObjects.forEach((postObject, index) => {
     .catch(error => console.log(error));
 }
 
+//author: Auss Al-Obaidi
+function countCharacters() {
+  const textarea = document.getElementById('stock-prediction');
+  const publishButton = document.getElementById('publish');
+  const charCount = document.getElementById('charCount');
+
+  const currentLength = textarea.value.length;
+  charCount.textContent = `${currentLength}/1000`;
+
+  if (currentLength > 1000) {
+      publishButton.disabled = true;
+      publishButton.classList.add('disabled');
+  } else {
+      publishButton.disabled = false;
+      publishButton.classList.remove('disabled');
+  }
+}
+
+
 
 
 
@@ -140,7 +159,8 @@ postObjects.forEach((postObject, index) => {
 function createPost() {
     let prediction = document.getElementById("stock-prediction").value;
     let currentUserElement = document.querySelector(".currentUser");
-  let email = currentUserElement.textContent;
+    let email = currentUserElement.textContent;
+    
     
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://localhost:8080/api/v1/post/new");
@@ -152,6 +172,7 @@ function createPost() {
           user: email, // Användarinformation
           text: prediction
         }
+        location.reload();
         // handle success response from server
       } else {
         // handle error response from server
@@ -164,7 +185,7 @@ function createPost() {
     console.log(prediction);
     xhr.send(JSON.stringify({"email": email, "text": prediction}));
 
-    location.reload();
+    
     
   }
 
